@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		67AC6E6A1F8FB94B00688CF8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67AC6E691F8FB94B00688CF8 /* main.cpp */; };
+		67AC6E731F8FBD5B00688CF8 /* pa2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67AC6E711F8FBD5B00688CF8 /* pa2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,8 @@
 
 /* Begin PBXFileReference section */
 		67AC6E661F8FB94B00688CF8 /* COP3503 Project 2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "COP3503 Project 2"; sourceTree = BUILT_PRODUCTS_DIR; };
-		67AC6E691F8FB94B00688CF8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		67AC6E701F8FBD4A00688CF8 /* pa2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pa2.h; sourceTree = "<group>"; };
+		67AC6E711F8FBD5B00688CF8 /* pa2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pa2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,8 @@
 		67AC6E681F8FB94B00688CF8 /* COP3503 Project 2 */ = {
 			isa = PBXGroup;
 			children = (
-				67AC6E691F8FB94B00688CF8 /* main.cpp */,
+				67AC6E701F8FBD4A00688CF8 /* pa2.h */,
+				67AC6E711F8FBD5B00688CF8 /* pa2.cpp */,
 			);
 			path = "COP3503 Project 2";
 			sourceTree = "<group>";
@@ -119,7 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AC6E6A1F8FB94B00688CF8 /* main.cpp in Sources */,
+				67AC6E731F8FBD5B00688CF8 /* pa2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
