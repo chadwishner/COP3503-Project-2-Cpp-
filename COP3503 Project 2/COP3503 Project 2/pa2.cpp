@@ -5,38 +5,73 @@
 #include "pa2.h"
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
+int main(int argc, char **argv) {
+	int userChoice;
+	string programName;
+	int programSize;
+	linkedList* list = new linkedList();
+	list -> initPages();
 
-    return 0;
+	if (argc != 2){
+		cout << "Error, ending program" << endl;
+		return 1;
+	}
+	else {
+		string bestOrWorst = argv[1];
+		cout << "Using " << bestOrWorst << " fit algoritm" << endl;
+
+		menu();
+
+		while (userChoice != 5){
+			cout << "Choice - ";
+
+			cin >> userChoice;
+
+			cout << endl;
+
+			switch (userChoice) {
+				case 1:
+					cout << "Program name - ";
+					cin >> programName;
+					cout << endl;
+					cout << "Program size (KB) - ";
+					cin >> programSize;
+					cout << endl;
+					programSize = kbToPages(programSize);
+					
+					if (list -> checkExistence(programName)){
+						cout << "Error, program already open" << endl;
+						break;
+					} else {
+						list -> insert(programName, programSize, bestOrWorst);
+					}
+					break;
+				case 2:
+					cout << "Program name - ";
+					cin >> programName;
+
+					if (!list -> checkExistence(programName)){
+						cout << "The program is not open" << endl;
+						break;
+					} else if (list -> checkExistence(programName)){
+						list -> kill(programName);
+						cout << "Program " << programName << " successfully killed, " << list -> countPages(programName) << " page(s) reclaimed." <<endl;
+						break;
+					}
+				case 3:
+					cout << "There are " << list -> countFrag() << " fragment(s)";
+					break;
+				case 4:
+					list -> print();
+					cout << "\n" << endl;
+				case 5:
+					return 0;
+					break;
+				default:
+					cout << "Not a proper choice, ending program" << endl;
+					break;
+			}
+		}
+	}
+	return 0;
 }
-
-
-/* Free     Free       Free     Free    4kb each
- Free     Free       Free     Free
- 
- Insert Program --> Name (p1), size (9kb)
- Name (p2), size (2kb)
- Name (p3), size (8kb)
- 
- p1     p1       p1       p2            (4kb each)
- p3     p3       Free     Free
- 
- Kill Program -->   Kill p2
- 
- p1     p1       p1       Free          (4kb each)
- p3     p3       Free     Free
- 
- Insert Program --> Name (p4), size (1kb) (BEST FIT), reduce the ammount of fragments (or spaces between used memory)
- 
- p1     p1       p1       p4            (4kb each)
- p3     p3       Free     Free
- 
- Insert Program --> Name (p4), size (1kb) (Worst FIT), reduce the ammount of fragments (or spaces between used memory)
- 
- p1     p1       p1       Free          (4kb each)
- p3     p3       p4       Free
- 
- Count Fragments --> counts the amount of spaces between used memory
- */
-
