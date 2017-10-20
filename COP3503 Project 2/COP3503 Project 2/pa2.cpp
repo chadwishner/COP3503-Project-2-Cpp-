@@ -64,6 +64,7 @@ int main(int argc, char **argv) {
 				case 4:
 					list -> print();
 					cout << "\n" << endl;
+					break;
 				case 5:
 					return 0;
 					break;

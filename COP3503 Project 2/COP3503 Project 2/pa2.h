@@ -15,7 +15,7 @@ void menu(){
 
 int kbToPages(int programSize){
 	int programPage = programSize / 4;
-	if (programSize % 4 == 0){
+	if (programSize % 4 != 0){
 		programPage++;
 	}
 	return programPage;
@@ -29,9 +29,6 @@ struct nodePage{
 	nodePage(string name){
 		this->name = name;
 	}
-	
-	nodePage* getNextNode();
-	
 };
 
 class linkedList{
@@ -65,10 +62,6 @@ void linkedList::initPages(){
 	}
 }
 
-nodePage* nodePage::getNextNode(){
-	return this -> nextNodePage;
-}
-
 void linkedList::print(){
 	nodePage* temp = head;
 	while (temp != NULL){
@@ -94,14 +87,12 @@ void linkedList::insert(string name, int programSize, string bestOrWorst){
 
 	if(bestOrWorst == "best"){
 		bestFrag = 33;
-		while(temp != NULL){
+		while(temp!= NULL){
 			if (temp -> name == "free"){
 				startNodeCurrent = temp;
-				currentFrag = 1;
-			}
-			while (temp != NULL && temp -> name == "free"){
-				currentFrag++;
-				if (temp -> nextNodePage != NULL){
+				currentFrag = 0;
+				while (temp != NULL && temp -> name == "free"){
+					currentFrag++;
 					temp = temp -> nextNodePage;
 				}
 			}
@@ -109,10 +100,9 @@ void linkedList::insert(string name, int programSize, string bestOrWorst){
 				startNodeSmallest = startNodeCurrent;
 				bestFrag = currentFrag;
 			}
-			if (temp -> nextNodePage != NULL){
+			if (temp != NULL){
 				temp = temp -> nextNodePage;
 			}
-			
 		}
 		if (bestFrag == 33 || programSize > bestFrag){
 			cout << "Program " << name << " was not added successfully." << endl;
@@ -124,7 +114,7 @@ void linkedList::insert(string name, int programSize, string bestOrWorst){
 		for (int x = 0; x < programSize; x++){
 			startNodeSmallest -> name = name;
 			
-			if (startNodeSmallest -> nextNodePage != NULL){
+			if (startNodeSmallest != NULL){
 				startNodeSmallest = startNodeSmallest -> nextNodePage;
 			}
 		}
@@ -205,7 +195,7 @@ bool linkedList::checkExistence(string programName){
 	bool exists = false;
 	nodePage* temp = head;
 	
-	while (temp != NULL){
+	for (int x = 0; x < 32; x++){
 		if (temp -> name == programName){
 			exists = true;
 			return exists;
