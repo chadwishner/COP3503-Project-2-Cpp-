@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 						break;
 					}
 				case 3:
-					cout << "There are " << list -> countFrag() << " fragment(s)";
+					cout << "There are " << list -> countFrag() << " fragment(s)" << endl;
 					break;
 				case 4:
 					list -> print();

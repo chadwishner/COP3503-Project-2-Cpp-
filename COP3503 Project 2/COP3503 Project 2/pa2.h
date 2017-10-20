@@ -66,7 +66,11 @@ void linkedList::print(){
 	nodePage* temp = head;
 	while (temp != NULL){
 		for (int x = 0; x < 8; x++){
-			cout << temp -> name << "\t";
+			if (temp -> name == "free"){
+				cout << temp -> name << "\t";
+			} else {
+				cout << temp -> name << "\t\t";
+			}
 			temp = temp -> nextNodePage;
 		}
 		cout << "\n";
@@ -118,16 +122,15 @@ void linkedList::insert(string name, int programSize, string bestOrWorst){
 				startNodeSmallest = startNodeSmallest -> nextNodePage;
 			}
 		}
+		
 	} else if (bestOrWorst == "worst"){
 		bestFrag = 0;
-		while(temp != NULL){
+		while(temp!= NULL){
 			if (temp -> name == "free"){
 				startNodeCurrent = temp;
-				currentFrag = 1;
-			}
-			while (temp != NULL && temp -> name == "free"){
-				currentFrag++;
-				if (temp -> nextNodePage != NULL){
+				currentFrag = 0;
+				while (temp != NULL && temp -> name == "free"){
+					currentFrag++;
 					temp = temp -> nextNodePage;
 				}
 			}
@@ -135,12 +138,10 @@ void linkedList::insert(string name, int programSize, string bestOrWorst){
 				startNodeSmallest = startNodeCurrent;
 				bestFrag = currentFrag;
 			}
-			if (temp -> nextNodePage != NULL){
+			if (temp != NULL){
 				temp = temp -> nextNodePage;
 			}
-			
 		}
-		
 		if (bestFrag == 0 || programSize > bestFrag){
 			cout << "Program " << name << " was not added successfully." << endl;
 			return;
@@ -151,7 +152,7 @@ void linkedList::insert(string name, int programSize, string bestOrWorst){
 		for (int x = 0; x < programSize; x++){
 			startNodeSmallest -> name = name;
 			
-			if (startNodeSmallest -> nextNodePage != NULL){
+			if (startNodeSmallest != NULL){
 				startNodeSmallest = startNodeSmallest -> nextNodePage;
 			}
 		}
